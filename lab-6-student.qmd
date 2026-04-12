@@ -117,10 +117,28 @@ san_diego_imperial_counties <- c("Imperial","San Diego")
 
 ca_childcare <- ca_childcare |> 
   mutate(county_name = str_remove(county_name, " County")) |>
-    mutate(region = fct_reorder(county_name,
-    'Superior California' = c("Butte", "Colusa", "El Dorado",...),
-    ...
-  )
+    mutate(region = fct_collapse(county_name,
+    'Superior California' = c("Butte", "Colusa", "El Dorado","Glenn","Lassen","Modoc",
+                       "Nevada","Placer","Plumas",
+                       "Sacramento","Shasta","Sierra","Siskiyou",
+                       "Sutter","Tehama","Yolo","Yuba"),
+    'North Coast' = c("Del Norte","Humboldt","Lake",
+                          "Mendocino","Napa","Sonoma","Trinity"),
+    'San Francisco' = c("Alameda","Contra Costa","Marin",
+                       "San Francisco","San Mateo","Santa Clara",
+                       "Solano"),
+    'Northen San Joaquin' = c("Alpine","Amador","Calaveras","Madera",
+                            "Mariposa","Merced","Mono","San Joaquin",
+                            "Stanislaus","Tuolumne"),
+    'Central Coast' = c("Monterey","San Benito","San Luis Obispo",
+                            "Santa Barbara","Santa Cruz","Ventura"),
+    'South San Joaquin' = c("Fresno","Inyo","Kern","Kings","Tulare"),
+    'Inland' = c("Riverside","San Bernardino"),
+    'Los Angeles' = "Los Angeles",
+    'Orange County' = "Orange",
+    'San Diego' = c("Imperial","San Diego")
+    
+  ))
   
 ```
 
