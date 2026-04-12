@@ -9,8 +9,7 @@ execute:
 
 # Part One: Set-up
 
-In this lab, we will be using the **tidyr** and **forcats** packages to explore
-the cost of childcare across the US. **You are expected to use functions from tidyr and forcats to do your data manipulation!**
+In this lab, we will be using the **tidyr** and **forcats** packages to explore the cost of childcare across the US. **You are expected to use functions from tidyr and forcats to do your data manipulation!**
 
 <!-- See instructions for words of advice on completing the assignment! -->
 
@@ -22,16 +21,17 @@ In this lab we're going look at the median weekly cost of childcare in Californi
 
 We also have information from the California State Controller on tax revenue for california counties from 2005 - 2018. I compiled the data from [this website](https://counties.bythenumbers.sco.ca.gov/#!/year/default) for you. Note that there is no data for San Franscisco County. The variables included in the `ca_tax_revenue.csv` data file (loaded below) include:
 
-- `entity_name`: County name
-- `year`: fiscal year
-- `total_property_taxes`: total revenue in $ from property taxes
-- `sales_and_use_taxes`: total revenue in $ from sales and use taxes
+-   `entity_name`: County name
+-   `year`: fiscal year
+-   `total_property_taxes`: total revenue in \$ from property taxes
+-   `sales_and_use_taxes`: total revenue in \$ from sales and use taxes
 
 **0. Load the appropriate libraries and the data.**
 
 ```{r}
 #| label: packages
-
+library("tidyverse")
+library(forcats)
 ```
 
 ```{r}
@@ -44,11 +44,13 @@ counties <- read_csv('https://raw.githubusercontent.com/rfordatascience/tidytues
 tax_rev <- read_csv('https://raw.githubusercontent.com/statistical-computing-r/spring-2026/refs/heads/main/labs/instructions/data/ca_tax_revenue.csv')
 ```
 
-**1. Briefly describe the `childcare_costs` dataset (~ 4 sentences). What information does it contain?**
+**1. Briefly describe the `childcare_costs` dataset (\~ 4 sentences). What information does it contain?**
+
+##### The childcare costs dataset contains information about the country, year, and proportions for a lot of factors such as race and population. Some of the columns have confusing names so it's a little hard to decipher what they mean but I think they are all proportional values for different hosuehold factors. It also has a lot of different columns, with a lot of them containing zeros. I also thougt it was interesting how the countries were labeled by code.
 
 ## California Childcare Costs
 
-**2. Let's start by focusing only on California. Create a `ca_childcare` dataset of childcare costs in California, containing (1) county information and (2) all information from the `childcare_costs` dataset. You should do all of this within one pipeline.** 
+**2. Let's start by focusing only on California. Create a `ca_childcare` dataset of childcare costs in California, containing (1) county information and (2) all information from the `childcare_costs` dataset. You should do all of this within one pipeline.**
 
 ```{r}
 #| label: ca-childcare-costs
@@ -126,7 +128,6 @@ ca_childcare <- ca_childcare |>
 
 ```
 
-
 **6. Which California `region` had the lowest `median` full-time median weekly price for center-based childcare for infants in 2018? Does this `region` correspond to the `region` with the lowest `median` income in 2018 that you found in Q4?**
 
 ```{r}
@@ -144,5 +145,3 @@ ca_childcare <- ca_childcare |>
 #| label: recreate-plot
 
 ```
-
-
