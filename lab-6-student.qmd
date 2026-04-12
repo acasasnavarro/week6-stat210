@@ -151,12 +151,21 @@ ca_childcare <- ca_childcare |>
 ```{r}
 #| label: median-income-by-region-over-time
 
+ca_childcare |>
+  filter(study_year %in% c(2008, 2018)) |> 
+  group_by(region, study_year) |>
+  summarise(medianincome = median(mhi_2018, na.rm = TRUE), .groups = "drop") |>
+      pivot_wider(names_from = study_year, values_from = medianincome) |>
+        arrange(desc('2018'))
+
 ```
 
 **6. Which California `region` had the lowest `median` full-time median weekly price for center-based childcare for infants in 2018? Does this `region` correspond to the `region` with the lowest `median` income in 2018 that you found in Q4?**
 
 ```{r}
 #| label: lowest-median-weekly-price-2018
+
+
 
 ```
 
