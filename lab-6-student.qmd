@@ -54,7 +54,10 @@ tax_rev <- read_csv('https://raw.githubusercontent.com/statistical-computing-r/s
 
 ```{r}
 #| label: ca-childcare-costs
-
+ca_childcare <- 
+  counties |>
+  filter(state_name == "California") |>
+  inner_join(childcare_costs)
 ```
 
 <!-- Checkpoint: There are 58 counties in CA and 11 years in the dataset. Therefore, your new dataset should have 53 x 11 = 638 observations. -->
@@ -63,6 +66,10 @@ tax_rev <- read_csv('https://raw.githubusercontent.com/statistical-computing-r/s
 
 ```{r}
 #| label: add-tax-information
+
+ca_tax <- ca_childcare |>
+  left_join(tax_rev, by = join_by(county_name == entity_name,
+                                  study_year == year))
 
 ```
 
@@ -110,7 +117,7 @@ san_diego_imperial_counties <- c("Imperial","San Diego")
 
 ca_childcare <- ca_childcare |> 
   mutate(county_name = str_remove(county_name, " County")) |>
-    mutate(region = fct_______(county_name,
+    mutate(region = fct_reorder(county_name,
     'Superior California' = c("Butte", "Colusa", "El Dorado",...),
     ...
   )
