@@ -165,6 +165,12 @@ ca_childcare |>
 ```{r}
 #| label: lowest-median-weekly-price-2018
 
+ca_childcare |>
+  filter(study_year == 2018) |>
+  group_by(region) |> 
+  summarise(infant_care = median(mc_infant, na.rm = TRUE)) |>
+  arrange(infant_care) |>
+  slice(1)
 
 
 ```
@@ -178,4 +184,9 @@ ca_childcare |>
 ```{r}
 #| label: recreate-plot
 
+ca_childcare |>
+  ggplot(aes(x = study_year, 
+                   y = median_price,
+                   color = region)) +
+  geom_point(alpha = 1) 
 ```
