@@ -185,8 +185,22 @@ ca_childcare |>
 #| label: recreate-plot
 
 ca_childcare |>
+  pivot_longer(
+    cols = c(mc_infant,mc_toddler,mc_preschool), 
+    names_to = "agetype", values_to = "medianincome") |>  
+  mutate(agetype = str_to_title(str_remove(agetype, "mc_")) ,
+         agetype = fct_relevel(agetype, "Infant", "Toddler", "Preschool"),
+         region = fct_reorder2(region, study_year, medianincome)
+  ) |>
   ggplot(aes(x = study_year, 
-                   y = median_price,
+                   y = medianincome,
                    color = region)) +
-  geom_point(alpha = 1) 
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "loess", se = FALSE) +
+  facet_wrap(~ agetype) +
+  labs(x = "Study Year", y = "region", color = "California Region") +
+  scale_x_continuous(breaks = seq(2008,2018, by = 2)) +
+  sale_codes (scale_color)
+  theme_bw() + 
+theme(aspect.ratio = 1)
 ```
