@@ -67,7 +67,7 @@ ca_childcare <-
 ```{r}
 #| label: add-tax-information
 
-ca_tax <- ca_childcare |>
+ca_childcare |>
   left_join(tax_rev, by = join_by(county_name == entity_name,
                                   study_year == year))
 

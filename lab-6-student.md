@@ -120,10 +120,31 @@ already in the `ca_childcare` data. Overwrite the old `ca_childcare`
 data with this dataset.**
 
 ``` r
-ca_tax <- ca_childcare |>
+ca_childcare |>
   left_join(tax_rev, by = join_by(county_name == entity_name,
                                   study_year == year))
 ```
+
+    # A tibble: 638 × 66
+       county_fips_code county_name  state_name state_abbreviation study_year unr_16
+                  <dbl> <chr>        <chr>      <chr>                   <dbl>  <dbl>
+     1             6001 Alameda Cou… California CA                       2008   6.6 
+     2             6001 Alameda Cou… California CA                       2009   7.71
+     3             6001 Alameda Cou… California CA                       2010   8.5 
+     4             6001 Alameda Cou… California CA                       2011   9.21
+     5             6001 Alameda Cou… California CA                       2012   9.91
+     6             6001 Alameda Cou… California CA                       2013  10.3 
+     7             6001 Alameda Cou… California CA                       2014   9.6 
+     8             6001 Alameda Cou… California CA                       2015   8.26
+     9             6001 Alameda Cou… California CA                       2016   7.11
+    10             6001 Alameda Cou… California CA                       2017   6.05
+    # ℹ 628 more rows
+    # ℹ 60 more variables: funr_16 <dbl>, munr_16 <dbl>, unr_20to64 <dbl>,
+    #   funr_20to64 <dbl>, munr_20to64 <dbl>, flfpr_20to64 <dbl>,
+    #   flfpr_20to64_under6 <dbl>, flfpr_20to64_6to17 <dbl>,
+    #   flfpr_20to64_under6_6to17 <dbl>, mlfpr_20to64 <dbl>, pr_f <dbl>,
+    #   pr_p <dbl>, mhi_2018 <dbl>, me_2018 <dbl>, fme_2018 <dbl>, mme_2018 <dbl>,
+    #   total_pop <dbl>, one_race <dbl>, one_race_w <dbl>, one_race_b <dbl>, …
 
 <!-- Checkpoint: You are only adding columns here, so your new dataset should still have 638 observations! -->
 
