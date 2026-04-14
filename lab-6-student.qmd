@@ -200,7 +200,6 @@ ca_childcare |>
   facet_wrap(~ agetype) +
   labs(x = "Study Year", y = "region", color = "California Region") +
   scale_x_continuous(breaks = seq(2008,2018, by = 2)) +
-  sale_codes (scale_color)
   theme_bw() + 
 theme(aspect.ratio = 1)
 ```
